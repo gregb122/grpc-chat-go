@@ -35,27 +35,6 @@ func run() error {
 	return nil
 }
 
-type MessageQueue interface {
-	AddMessageToQueue(isToSend bool, msg string)
-	GetElemsFromQueue(isToSend bool, getAll bool) [][]string
-	StoreAndDeleteSentMessages(msgs [][]string)
-	StoreAndDeleteSentMessage(msgID string, msg string)
-}
-
-type UserAuth interface {
-	RegisterUser(req chat_service.RegisterUserRequest)
-	LoginUser(req chat_service.LoginUserRequest)
-	ListRegistredUsers() []chat_service.UserInfo
-}
-
-type InMemoryQueue struct {
-	queue [][]string
-}
-
-type InMemoryAuth struct {
-	users []chat_service.UserInfo
-}
-
 // chatServiceServer implements the ChatService API.
 type chatServiceServer struct {
 	chat_service.UnimplementedChatServiceServer
